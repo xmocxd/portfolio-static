@@ -1,40 +1,5 @@
 {{ define "main" }}
 <div class="home">
-
-        <div class="lines">
-        <div class="line-box">
-            <div class="line-rh"></div>
-            <div class="line-rht"></div>
-        </div>
-        <div class="line-box l">
-            <div class="line line-r"></div>
-            <div class="line line-l"></div>
-        </div>
-        <div class="line-box  l">
-            <div class="line line-r"></div>
-            <div class="line line-l"></div>
-        </div>
-        <div class="line-box">
-            <div class="line line-r"></div>
-            <div class="line line-l"></div>
-        </div>
-        <div class="line-box">
-            <div class="line line-r"></div>
-            <div class="line line-l"></div>
-        </div>
-        <div class="line-box">
-            <div class="line line-r"></div>
-            <div class="line line-lht"></div>
-        </div>
-        <div class="line-box">
-        </div>
-        <div class="line-box">
-            <div class="line line-rht"></div>
-            <div class="line line-lht"></div>
-        </div>
-    </div>
-
-    
     <h1>{{ .Site.Title }}</h1>
     {{ if .Site.Params.description }}
     <p class="description">{{ .Site.Params.description }}</p>
@@ -46,7 +11,7 @@
     </div>
     {{ end }}
     
-    {{ if .Site.RegularPages }}
+    <!-- {{ if .Site.RegularPages }}
     <h2>Recent Posts</h2>
     <ul class="post-list">
         {{ range first 5 .Site.RegularPages }}
@@ -56,6 +21,6 @@
         </li>
         {{ end }}
     </ul>
-    {{ end }}
+    {{ end }} -->
 </div>
 {{ end }}

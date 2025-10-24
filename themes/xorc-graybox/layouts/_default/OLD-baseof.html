@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    
+    <!-- Basic CSS -->
+    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+    
+    <!-- RSS -->
+    {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ end -}}
+</head>
+<body>
+    {{ partial "header.html" . }}
+    
+    <div class="spacer"></div>
+    
+    <main>
+        <div class="flex-block">
+            <div class="block grow border t">
+                {{ block "main" . }}{{ end }}
+            </div>
+            <div class="block">
+                <div class="lines">
+                    <div class="line-box">
+                        <div class="line r h"></div>
+                        <div class="line r h t"></div>
+                    </div>
+                    <div class="break">
+                    </div>
+                    <div class="line-box l">
+                        <div class="line f r"></div>
+                        <div class="line f l"></div>
+                    </div>
+                    <div class="line-box">
+                        <div class="line f r"></div>
+                        <div class="line f l"></div>
+                    </div>
+                    <div class="line-box">
+                        <div class="line f r"></div>
+                        <div class="line f l"></div>
+                    </div>
+                    <div class="line-box">
+                        <div class="line f r"></div>
+                        <div class="line f l"></div>
+                    </div>
+                    <div class="line-box">
+                        <div class="line f r"></div>
+                        <div class="line l h t"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-block bottom">
+            <div class="block grow">
+                <div class="divider r"></div>
+            </div>
+            <div class="block">
+                <div class="line-box h">
+                    <div class="line l"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="spacer sm"></div>
+        
+        <h2 class="center">About Me</h2>
+        
+        <div class="block border">
+            <p>Lorem ipsum dolor rit amet consectetur adipisicing elit. Veritatis corrupti velit cumque nam culpa ab maxime ipsum unde dolorem veniam atque cum quisquam ratione laboriosam nulla dolore similique, architecto adipisci!</p>
+            <p>Lorem ipsum dolor rit amet consectetur adipisicing elit. Veritatis corrupti velit cumque nam culpa ab maxime ipsum unde dolorem veniam atque cum quisquam ratione laboriosam nulla dolore similique, architecto adipisci!</p>
+            <p>Lorem ipsum dolor rit amet consectetur adipisicing elit. Veritatis corrupti velit cumque nam culpa ab maxime ipsum unde dolorem veniam atque cum quisquam ratione laboriosam nulla dolore similique, architecto adipisci!</p>
+        </div>
+        
+        <div class="divider"></div>
+
+    </main>
+    
+    <footer>
+        <p>
+            <a href="https://github.com/xmocxd">
+                <img class="icon sm" src="/images/github-mark-white.svg">
+                https://github.com/xmocxd
+            </a>
+        </p>
+    </footer>
+    
+    <!-- Basic JavaScript -->
+    <script src="{{ "js/main.js" | relURL }}"></script>
+</body>
+</html>
