@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="list">
+    <h1>{{ .Title }}</h1>
+    
+    {{ if .Content }}
+        <div class="content">
+            {{ .Content }}
+        </div>
+    {{ end }}
+    
+    {{ if .Pages }}
+        <ul class="post-list">
+            {{ range .Pages }}
+                <li>
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    {{ if .Date }}
+                        <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
+                    {{ end }}
+                    {{ if .Summary }}
+                        <p class="summary">{{ .Summary }}</p>
+                    {{ end }}
+                </li>
+            {{ end }}
+        </ul>
+    {{ else }}
+        <p>No posts found.</p>
+    {{ end }}
+</div>
+{{ end }}

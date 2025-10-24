@@ -1,0 +1,61 @@
+{{ define "main" }}
+<div class="home">
+
+        <div class="lines">
+        <div class="line-box">
+            <div class="line-rh"></div>
+            <div class="line-rht"></div>
+        </div>
+        <div class="line-box l">
+            <div class="line line-r"></div>
+            <div class="line line-l"></div>
+        </div>
+        <div class="line-box  l">
+            <div class="line line-r"></div>
+            <div class="line line-l"></div>
+        </div>
+        <div class="line-box">
+            <div class="line line-r"></div>
+            <div class="line line-l"></div>
+        </div>
+        <div class="line-box">
+            <div class="line line-r"></div>
+            <div class="line line-l"></div>
+        </div>
+        <div class="line-box">
+            <div class="line line-r"></div>
+            <div class="line line-lht"></div>
+        </div>
+        <div class="line-box">
+        </div>
+        <div class="line-box">
+            <div class="line line-rht"></div>
+            <div class="line line-lht"></div>
+        </div>
+    </div>
+
+    
+    <h1>{{ .Site.Title }}</h1>
+    {{ if .Site.Params.description }}
+    <p class="description">{{ .Site.Params.description }}</p>
+    {{ end }}
+    
+    {{ if .Content }}    
+    <div class="content">
+        {{ .Content }}
+    </div>
+    {{ end }}
+    
+    {{ if .Site.RegularPages }}
+    <h2>Recent Posts</h2>
+    <ul class="post-list">
+        {{ range first 5 .Site.RegularPages }}
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
+        </li>
+        {{ end }}
+    </ul>
+    {{ end }}
+</div>
+{{ end }}

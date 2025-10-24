@@ -1,0 +1,18 @@
+name = "Simple Base"
+license = "MIT"
+licenselink = "https://github.com/yourusername/simple-base/blob/main/LICENSE"
+description = "A simple, barebones Hugo theme perfect as a starting point for customization"
+homepage = "https://github.com/yourusername/simple-base"
+tags = ["blog", "minimal", "responsive", "simple"]
+features = ["responsive", "minimal"]
+min_version = "0.41.0"
+
+[author]
+  name = "Your Name"
+  homepage = "https://yourwebsite.com"
+
+# If you are porting an existing theme
+[original]
+  name = "Simple Base"
+  homepage = "https://github.com/yourusername/simple-base"
+  repo = "https://github.com/yourusername/simple-base.git"
