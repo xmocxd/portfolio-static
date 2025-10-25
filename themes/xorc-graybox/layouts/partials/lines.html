@@ -1,13 +1,25 @@
 <div class="relative">
     <div class="w-2/3 md:w-1/3 mx-auto border-t border-gray-400 dark:border-gray-600 my-16"></div>
-    <div id="random-line-art-container" class="lines h-[610px]">
+    <div id="random-line-art-container" class="lines">
     </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", (event) => {
-        const numBoxes = 12;
-        const linesContainer = document.getElementById("random-line-art-container");
+        const config = {
+            boxSize: 120,
+            containerSize: 600,
+            maxBoxes: 14,
+            maxColumns: 3,
+            maxColumnHeight: 10,
+            linesContainer: "random-line-art-container"
+        };
+        
+        const linesContainer = document.getElementById(config.linesContainer);
+        linesContainer.style.height = config.containerSize + "px";
+        let column = 0;
+        let currentStack = 0;
+        let prevElement = null;
         
         const fullX = () => {
             const lineBox = weightedRandomFunction(boxWeightsArray);
@@ -170,8 +182,23 @@
         };
         
         const breakDiv = () => {
+            // Add a breaking div to force boxes to the next column
+            
+            if (
+            column === config.maxColumns
+            || !prevElement
+            || prevElement.classList.contains('break')
+            ) {
+                // don't break if on last column, first element, or prev element was a break
+                return false;
+            }
             const div = document.createElement("div");
             div.classList.add("break");
+            
+            // Set column and reset stack count
+            column++;
+            currentStack = 0;
+            
             return div;
         };
         
@@ -179,29 +206,39 @@
             const lineBox = document.createElement("div");
             lineBox.classList.add("line-box");
             lineBox.classList.add("t");
+            lineBox.style.height = config.boxSize + "px";
+            lineBox.style.width = config.boxSize + "px";
             return lineBox;
         };
         const borderR = () => {
             const lineBox = document.createElement("div");
             lineBox.classList.add("line-box");
             lineBox.classList.add("r");
+            lineBox.style.height = config.boxSize + "px";
+            lineBox.style.width = config.boxSize + "px";
             return lineBox;
         };
         const borderB = () => {
             const lineBox = document.createElement("div");
             lineBox.classList.add("line-box");
             lineBox.classList.add("b");
+            lineBox.style.height = config.boxSize + "px";
+            lineBox.style.width = config.boxSize + "px";
             return lineBox;
         };
         const borderL = () => {
             const lineBox = document.createElement("div");
             lineBox.classList.add("line-box");
             lineBox.classList.add("l");
+            lineBox.style.height = config.boxSize + "px";
+            lineBox.style.width = config.boxSize + "px";
             return lineBox;
         };
         const noBorder = () => {
             const lineBox = document.createElement("div");
             lineBox.classList.add("line-box");
+            lineBox.style.height = config.boxSize + "px";
+            lineBox.style.width = config.boxSize + "px";
             return lineBox;
         };
         
@@ -213,7 +250,7 @@
         { "weight": 8, "function": leftV },
         { "weight": 5, "function": lineR },
         { "weight": 5, "function": lineL },
-        { "weight": 3, "function": breakDiv }
+        { "weight": 4, "function": breakDiv }
         ];
         
         const boxWeightsArray = [
@@ -238,16 +275,37 @@
                 });
             }
             
-            console.log("sum", sum);
-            console.log("rnd", rnd);
-            console.log("weights", normalizedWeights);
+            // console.log("rnd", rnd);
+            // console.log("weights", normalizedWeights);
             
-            console.log(normalizedWeights.find(e => rnd <= e.weight));
+            // console.log(normalizedWeights.find(e => rnd <= e.weight).function());
+            
             return normalizedWeights.find(e => rnd <= e.weight).function();
         };
         
-        for (let i = 0; i < numBoxes; i++) {
-            linesContainer.appendChild(weightedRandomFunction(lineWeightsArray));
+        for (let i = 0; i < config.maxBoxes; i++) {
+            console.log("col/stack", column, currentStack);
+            
+            if (column < config.maxColumns) {
+                // only add new boxes if we are within maxColumns
+                // -- this results in potentially fewer than maxBoxes, but prevents overflow of the flex container
+                const element = weightedRandomFunction(lineWeightsArray);
+                console.log(element);
+                if (element) {
+                    prevElement = element;
+                    currentStack++;
+                    linesContainer.appendChild(element);
+                }
+                
+                if (currentStack * config.boxSize >= config.containerSize) {
+                    // if wrapping at edge of container
+                    
+                    // Set column and reset stack count
+                    column++;
+                    currentStack = 0;
+                    
+                }
+            }
         }
         
     });
