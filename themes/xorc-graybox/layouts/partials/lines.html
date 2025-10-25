@@ -1,17 +1,16 @@
 <div class="relative">
     <div class="w-2/3 md:w-1/3 mx-auto border-t border-gray-400 dark:border-gray-600 my-16"></div>
-    <div id="diagonal-lines-container" class="lines h-[610px]">
+    <div id="random-line-art-container" class="lines h-[610px]">
     </div>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", (e) => {
-        const numVariations = 8
-        const linesContainer = document.getElementById("diagonal-lines-container");
+    document.addEventListener("DOMContentLoaded", (event) => {
+        const numBoxes = 12;
+        const linesContainer = document.getElementById("random-line-art-container");
         
-        function fullX() {
-            const lineBox = document.createElement("div");
-            lineBox.classList.add("line-box");
+        const fullX = () => {
+            const lineBox = weightedRandomFunction(boxWeightsArray);
             
             let line;
             
@@ -42,11 +41,10 @@
             lineBox.appendChild(line);
             
             return lineBox;
-        }
+        };
         
-        function bottomV() {
-            const lineBox = document.createElement("div");
-            lineBox.classList.add("line-box");
+        const bottomV = () => {
+            const lineBox = weightedRandomFunction(boxWeightsArray);
             
             let line;
             
@@ -63,11 +61,10 @@
             lineBox.appendChild(line);
             
             return lineBox;
-        }
+        };
         
-        function topV() {
-            const lineBox = document.createElement("div");
-            lineBox.classList.add("line-box");
+        const topV = () => {
+            const lineBox = weightedRandomFunction(boxWeightsArray);
             
             let line;
             
@@ -86,12 +83,10 @@
             lineBox.appendChild(line);
             
             return lineBox;
-        }
+        };
         
-        function lineR() {
-            
-            const lineBox = document.createElement("div");
-            lineBox.classList.add("line-box");
+        const lineR = () => {
+            const lineBox = weightedRandomFunction(boxWeightsArray);
             
             let line;
             
@@ -109,12 +104,10 @@
             lineBox.appendChild(line);
             
             return lineBox;
-        }
+        };
         
-        function lineL() {
-            
-            const lineBox = document.createElement("div");
-            lineBox.classList.add("line-box");
+        const lineL = () => {
+            const lineBox = weightedRandomFunction(boxWeightsArray);
             
             let line;
             
@@ -132,12 +125,10 @@
             lineBox.appendChild(line);
             
             return lineBox;
-        }
+        };
         
-        function rightV() {
-            
-            const lineBox = document.createElement("div");
-            lineBox.classList.add("line-box");
+        const rightV = () => {
+            const lineBox = weightedRandomFunction(boxWeightsArray);
             
             let line;
             
@@ -155,12 +146,10 @@
             lineBox.appendChild(line);
             
             return lineBox;
-        }
+        };
         
-        function leftV() {
-            
-            const lineBox = document.createElement("div");
-            lineBox.classList.add("line-box");
+        const leftV = () => {
+            const lineBox = weightedRandomFunction(boxWeightsArray);
             
             let line;
             
@@ -178,46 +167,87 @@
             lineBox.appendChild(line);
             
             return lineBox;
-        }
+        };
         
-        function breakDiv() {
+        const breakDiv = () => {
             const div = document.createElement("div");
             div.classList.add("break");
             return div;
-        }
+        };
         
+        const borderT = () => {
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            lineBox.classList.add("t");
+            return lineBox;
+        };
+        const borderR = () => {
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            lineBox.classList.add("r");
+            return lineBox;
+        };
+        const borderB = () => {
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            lineBox.classList.add("b");
+            return lineBox;
+        };
+        const borderL = () => {
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            lineBox.classList.add("l");
+            return lineBox;
+        };
+        const noBorder = () => {
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            return lineBox;
+        };
         
-        for (let i = 0; i < 12; i++) {
+        const lineWeightsArray = [
+        { "weight": 0, "function": fullX },
+        { "weight": 8, "function": bottomV },
+        { "weight": 0, "function": topV },
+        { "weight": 8, "function": rightV },
+        { "weight": 8, "function": leftV },
+        { "weight": 5, "function": lineR },
+        { "weight": 5, "function": lineL },
+        { "weight": 3, "function": breakDiv }
+        ];
+        
+        const boxWeightsArray = [
+        { "weight": 0, "function": borderT },
+        { "weight": 0, "function": borderR },
+        { "weight": 0, "function": borderB },
+        { "weight": 7, "function": borderL },
+        { "weight": 10, "function": noBorder }
+        ];
+        
+        const weightedRandomFunction = (weights) => {
+            const sum = weights.reduce((acc, e) => acc + e.weight, 0);
+            const rnd = Math.random();
+            const normalizedWeights = []; 
             
-            const rnd = Math.floor(Math.random()*numVariations);
-            switch(rnd) {
-                case 0:
-                linesContainer.appendChild(fullX());
-                break;
-                case 1:
-                linesContainer.appendChild(bottomV());
-                break;
-                case 2:
-                linesContainer.appendChild(topV());
-                break;
-                case 3:
-                linesContainer.appendChild(lineR());
-                break;
-                case 4:
-                linesContainer.appendChild(lineL());
-                break;
-                case 5:
-                linesContainer.appendChild(rightV());
-                break;
-                case 6:
-                linesContainer.appendChild(leftV());
-                break;
-                case 7:
-                linesContainer.appendChild(breakDiv());
-                break;
-               
+            
+            for (let i = 0; i < weights.length; i++) {
+                let previous = i > 0 ? normalizedWeights[i-1].weight : 0;
+                normalizedWeights.push({
+                    "weight": weights[i].weight/sum + previous,
+                    "function": weights[i].function
+                });
             }
             
+            console.log("sum", sum);
+            console.log("rnd", rnd);
+            console.log("weights", normalizedWeights);
+            
+            console.log(normalizedWeights.find(e => rnd <= e.weight));
+            return normalizedWeights.find(e => rnd <= e.weight).function();
+        };
+        
+        for (let i = 0; i < numBoxes; i++) {
+            linesContainer.appendChild(weightedRandomFunction(lineWeightsArray));
         }
         
     });
