@@ -12,7 +12,7 @@
 
 .fade-in-up {
     opacity: 0;
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.2s ease-out forwards;
 }
 
 .fade-in-up.delay-1 {
