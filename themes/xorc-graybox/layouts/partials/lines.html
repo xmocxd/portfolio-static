@@ -243,13 +243,13 @@
         };
         
         const lineWeightsArray = [
-        { "weight": 0, "function": fullX },
+        { "weight": 1, "function": fullX },
         { "weight": 8, "function": bottomV },
-        { "weight": 0, "function": topV },
-        { "weight": 8, "function": rightV },
+        { "weight": 1, "function": topV },
+        { "weight": 9, "function": rightV },
         { "weight": 8, "function": leftV },
         { "weight": 5, "function": lineR },
-        { "weight": 5, "function": lineL },
+        { "weight": 6, "function": lineL },
         { "weight": 4, "function": breakDiv }
         ];
         
@@ -275,22 +275,14 @@
                 });
             }
             
-            // console.log("rnd", rnd);
-            // console.log("weights", normalizedWeights);
-            
-            // console.log(normalizedWeights.find(e => rnd <= e.weight).function());
-            
             return normalizedWeights.find(e => rnd <= e.weight).function();
         };
         
         for (let i = 0; i < config.maxBoxes; i++) {
-            console.log("col/stack", column, currentStack);
-            
             if (column < config.maxColumns) {
                 // only add new boxes if we are within maxColumns
                 // -- this results in potentially fewer than maxBoxes, but prevents overflow of the flex container
                 const element = weightedRandomFunction(lineWeightsArray);
-                console.log(element);
                 if (element) {
                     prevElement = element;
                     currentStack++;

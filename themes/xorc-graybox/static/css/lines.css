@@ -40,7 +40,6 @@ LINES
 .line-box {
     position: relative;
     border: solid 0px rgb(75 85 99);
-    border-width: 2px;
 }
 
 .line {
