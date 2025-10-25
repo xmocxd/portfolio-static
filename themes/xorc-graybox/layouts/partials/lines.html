@@ -1,31 +1,224 @@
-<div class="relative fade-in-up delay-2">
-    <div class="lines h-[410px]">
-        <div class="line-box">
-            <div class="line r h"></div>
-            <div class="line r h t"></div>
-        </div>
-        <div class="break">
-        </div>
-        <div class="line-box l">
-            <div class="line f r"></div>
-            <div class="line f l"></div>
-        </div>
-        <div class="line-box">
-            <div class="line f r"></div>
-            <div class="line f l"></div>
-        </div>
-        <div class="line-box">
-            <div class="line f r"></div>
-            <div class="line f l"></div>
-        </div>
-        <div class="line-box">
-            <div class="line f r"></div>
-            <div class="line f l"></div>
-        </div>
-        <div class="line-box">
-            <div class="line f r"></div>
-            <div class="line l h t"></div>
-        </div>
-    </div>
+<div class="relative">
     <div class="w-2/3 md:w-1/3 mx-auto border-t border-gray-400 dark:border-gray-600 my-16"></div>
+    <div id="diagonal-lines-container" class="lines h-[610px]">
+    </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", (e) => {
+        const numVariations = 8
+        const linesContainer = document.getElementById("diagonal-lines-container");
+        
+        function fullX() {
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            
+            let line;
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("r");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("l");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("r");
+            line.classList.add("t");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("l");
+            line.classList.add("t");
+            lineBox.appendChild(line);
+            
+            return lineBox;
+        }
+        
+        function bottomV() {
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            
+            let line;
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("r");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("l");
+            lineBox.appendChild(line);
+            
+            return lineBox;
+        }
+        
+        function topV() {
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            
+            let line;
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("r");
+            line.classList.add("t");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("l");
+            line.classList.add("t");
+            lineBox.appendChild(line);
+            
+            return lineBox;
+        }
+        
+        function lineR() {
+            
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            
+            let line;
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("r");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("r");
+            line.classList.add("t");
+            lineBox.appendChild(line);
+            
+            return lineBox;
+        }
+        
+        function lineL() {
+            
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            
+            let line;
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("l");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("l");
+            line.classList.add("t");
+            lineBox.appendChild(line);
+            
+            return lineBox;
+        }
+        
+        function rightV() {
+            
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            
+            let line;
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("r");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("l");
+            line.classList.add("t");
+            lineBox.appendChild(line);
+            
+            return lineBox;
+        }
+        
+        function leftV() {
+            
+            const lineBox = document.createElement("div");
+            lineBox.classList.add("line-box");
+            
+            let line;
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("l");
+            lineBox.appendChild(line);
+            
+            line = document.createElement("div");
+            line.classList.add("line");
+            line.classList.add("h");
+            line.classList.add("r");
+            line.classList.add("t");
+            lineBox.appendChild(line);
+            
+            return lineBox;
+        }
+        
+        function breakDiv() {
+            const div = document.createElement("div");
+            div.classList.add("break");
+            return div;
+        }
+        
+        
+        for (let i = 0; i < 12; i++) {
+            
+            const rnd = Math.floor(Math.random()*numVariations);
+            switch(rnd) {
+                case 0:
+                linesContainer.appendChild(fullX());
+                break;
+                case 1:
+                linesContainer.appendChild(bottomV());
+                break;
+                case 2:
+                linesContainer.appendChild(topV());
+                break;
+                case 3:
+                linesContainer.appendChild(lineR());
+                break;
+                case 4:
+                linesContainer.appendChild(lineL());
+                break;
+                case 5:
+                linesContainer.appendChild(rightV());
+                break;
+                case 6:
+                linesContainer.appendChild(leftV());
+                break;
+                case 7:
+                linesContainer.appendChild(breakDiv());
+                break;
+               
+            }
+            
+        }
+        
+    });
+</script>
