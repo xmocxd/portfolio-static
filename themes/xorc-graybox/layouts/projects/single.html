@@ -3,11 +3,28 @@
 <main class="container mx-auto px-6 pt-24 pb-12 relative">
     <div class="relative z-10">
         {{ partial "lines.html" . }}
+
+        <h2>{{ .Title }}</h2>
         
-        potato
+        Project Size: {{ .Params.size }}
+        
+        <p>
+            Tags:
+            {{ $tags := .GetTerms "tags" }}
+            {{ range $index, $tag := $tags }}
+            <a href="{{ $tag.RelPermalink }}">{{ $tag.LinkTitle }}</a>{{ if ne (add $index 1) (len $tags) }}, {{ end }}
+            {{ end }}
+        </p>
+        <p>
+            Tech:
+            {{ $tags := .GetTerms "tech" }}
+            {{ range $index, $tag := $tags }}
+            <a href="{{ $tag.RelPermalink }}">{{ $tag.LinkTitle }}</a>{{ if ne (add $index 1) (len $tags) }}, {{ end }}
+            {{ end }}
+        </p>
         
         {{ if .Content }}    
-        <div class="content">
+        <div class="content mt-16">
             {{ .Content }}
         </div>
         {{ end }}
