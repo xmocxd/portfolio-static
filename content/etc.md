@@ -6,3 +6,4 @@ weight = 1
 
 {{< h "Snippets" >}}
 {{< h "Misc Files" >}}
+{{< files >}}

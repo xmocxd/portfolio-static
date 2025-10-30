@@ -1,16 +1,14 @@
 TODO
 
-- randomize lines on load
+- add archetype for project
+
 - animate lines on load
 - add line as project -- diagonal-lines-effect
 
-- add another test project
-- mock up sortable-grid
 - mock up git-activity-feed
 
 ETC Page
-- mockups
-- snippets
+- snippet repo with codepen links
 
 TODO projects
 - qUI repo -- all components

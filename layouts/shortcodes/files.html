@@ -1,0 +1,16 @@
+{{ range .Site.Data.files }}
+<uL>
+    {{ range $k, $v := . }}
+    <li>
+        - {{ $k }}
+    </li>
+    <uL>
+        {{ range $k2, $v2 := $v }}
+        <li>
+            -- <a href="/files/{{$k}}/{{ $v2.file }}">{{ $v2.file }}</a>
+        </li> 
+        {{ end }}
+    </uL>
+    {{ end }}
+</uL>
+{{ end }}

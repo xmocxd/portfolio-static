@@ -4,14 +4,14 @@
     {{ $pages_subset := where .Site.RegularPages "Section" "project" }}
     {{ range $pages_subset.ByWeight.Reverse }}
     <div class="flex flex-row my-8 border border-gray-600/50">
-        <div class="w-[200px] h-[200px] bg-[url('{{ `images/test-img.png` | relURL }}')] bg-cover bg-center"></div>
+        <div class="shrink-0 w-[200px] min-h-[200px] bg-[url('{{ `images/test-img.png` | relURL }}')] bg-cover bg-center"></div>
         <div class="grow border-l border-gray-600/50 p-8 bg-background-dark/70 backdrop-blur-sm">
             <h3 class="text-lg font-bold mb-8">{{ .Title }}</h3>
             <p class="text-sm mb-4">{{ .Summary }}</p>
             <a class="text-sm hover:text-gray-500 dark:hover:text-gray-300 transition-colors" href="{{ .RelPermalink }}">&gt;&gt;</a>
         </div>
     </div>
-    {{ end}}
+    {{ end }}
     
     <div class="text-center mt-12">
         <a class="inline-block border border-gray-400 dark:border-gray-600 px-6 py-2 text-sm rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" href="{{ `projects` | relURL }}">View More</a>

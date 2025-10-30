@@ -8,6 +8,7 @@ tags = ['UI Component', 'Visual Effect']
 tech = ['JavaScript', 'CSS']
 [params]
     size = 'micro'
+    featured = true
 +++
 
 test
