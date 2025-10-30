@@ -2,7 +2,7 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center fade-in-up">
             <a class="text-sm hover:text-gray-500 dark:hover:text-gray-300 transition-colors" href="/">{{ .Site.Title }}</a>
             <nav class="md:flex items-center space-x-6">
-                {{ $pages_subset := where .Site.RegularPages "Section" "pages" }}
+                {{ $pages_subset := where .Site.RegularPages "Section" "" }}
                 {{ range $pages_subset.ByWeight.Reverse }}
                 <a class="text-sm hover:text-gray-500 dark:hover:text-gray-300 transition-colors" href="{{ .RelPermalink }}">{{ .Title }}</a>
                 {{ end}}
