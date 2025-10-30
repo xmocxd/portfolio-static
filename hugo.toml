@@ -2,3 +2,6 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'M.A.Hastings | Web Developer'
 theme = 'xorc-graybox'
+[taxonomies]
+    tag = 'tags'
+    tech = 'tech'

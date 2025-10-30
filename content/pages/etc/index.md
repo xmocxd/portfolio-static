@@ -5,4 +5,4 @@ weight = 1
 +++
 
 {{< h "Snippets" >}}
-{{< h "Mockups" >}}
+{{< h "Misc Files" >}}
